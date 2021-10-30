@@ -15,6 +15,22 @@ router.get('/', (req, res) => {
     res.send("El Inicio de la Api Rest")
 });
 
+router.post('/tarea',(req, res) =>{
+    let nuevaTarea = new TareaSchema({
+       idTarea: req.body.id,
+       tipodocTarea: req.body.tipodoc,
+       numerodocTarea: req.body.numerodoc,
+       nombreTarea: req.body.nombre
+    });
+
+    nuevaTarea.save(function(err, datos){
+        if(err){
+            console.log(err);
+        }
+        res.send("Usuario Almacenado")
+    })
+})
+app.use(router);
 app.listen(3000, () => {
     console.log("El servidor se esta ejecutando en el puerto 3000")
 });
