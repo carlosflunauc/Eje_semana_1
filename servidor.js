@@ -15,6 +15,16 @@ router.get('/', (req, res) => {
     res.send("El Inicio de la Api Rest")
 });
 
+router.get('/tarea',(req, res) => {
+    TareaSchema.find(function(err, datos){
+        if(err){
+            console.log("Error leyendo los datos");
+        }else{
+            res.send(datos);
+        }
+    })
+})
+
 router.post('/tarea',(req, res) =>{
     let nuevaTarea = new TareaSchema({
        idTarea: req.body.id,
